@@ -1,16 +1,19 @@
 import java.util.Random;
 
-public class Pokemon {
+public abstract class Pokemon {
 	
 	private String nom;
 	private int niveau;
-	private int hp;
-	private int atk;
+	private int niveauMax = 100;
+	protected float hp;
+	protected float atk;
+	private TypePokemon type;
 	public java.util.Random random = new Random();
 	
 	
-	public Pokemon(String nom) {
+	public Pokemon(String nom, TypePokemon type) {
 		this.nom = nom;
+		this.type = type;
 		this.niveau= random.nextInt(1, 11);
 		this.hp = this.niveau*2;
 		this.atk = (this.niveau /2)+1;
@@ -27,17 +30,17 @@ public class Pokemon {
 	}
 
 
-	public int getHp() {
+	public float getHp() {
 		return hp;
 	}
-
-	public void setHp(int hp) {
-		this.hp = hp;
+	
+	public TypePokemon getType() {
+		return type;
 	}
 
 
-	public int getAtk() {
-		log(this.nom + " attaque Trempette");
+	public float getAtk() {
+		log(this.nom + " utilise Trempette");
 		return atk;
 	}
 	
@@ -57,15 +60,13 @@ public class Pokemon {
 		}
 	}
 	
-	public void attaquer(Pokemon p) {
-		log(this.nom + " attaque " + p.nom);
-		log(p.nom + " subit " + this.atk + " de dégats");
-		p.setHp(p.getHp()-this.atk);
-	}
+	public abstract void attaquer(Pokemon p);
+	
+	public abstract void subir(Pokemon p);
 	
 	public String toString() {
 		return ("[Pokemon " + this.nom + "]" + "\n Nom : " + this.nom + "\n Niveau : " + this.niveau + 
-				"\n Point de vie : " + this.hp + "\n Attaque : " + this.atk);
+				"\n Point de vie : " + this.hp + "\n Attaque : " + this.atk + "\n Type : " + this.type);
 	}
 	
 	public void log(String msg) {
