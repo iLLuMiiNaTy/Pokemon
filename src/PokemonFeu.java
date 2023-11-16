@@ -20,7 +20,7 @@ public class PokemonFeu extends Pokemon{
 			this.hp = this.hp - 2*p.getAtk();
 			break;
 		case FEU : 
-			log("PEU EFFICACE \n " + this.getNom() + " subit " + 1/2*p.atk + " de dégats!");
+			log("PEU EFFICACE \n " + this.getNom() + " subit " + 1/2*p.getAtk() + " de dégats!");
 			this.hp = this.hp - 1/2*p.getAtk();
 			break;
 		case PLANTE : 
